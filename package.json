@@ -1,8 +1,8 @@
 {
-  "name": "kd2knife",
+  "name": "kdknife",
   "version": "0.1.0",
   "description": "A kanjidic2 => json => mongodb extraction tool",
-  "main": "index.js",
+  "main": "kdknife.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,7 @@
   "dependencies": {
     "xml2js": "^0.4.4",
     "eyes": "^0.1.8",
-    "mongodb": "^1.4.10"
+    "mongodb": "^1.4.10",
+    "jsonfile": "^2.0.0"
   }
 }
