@@ -1,7 +1,7 @@
 // Node libraries
 var fs = require('fs');
 var xml2js = require('xml2js');
-var parser = new xml2js.Parser({attrkey: '@', explicitArray: false});
+var parser = new xml2js.Parser({attrkey: '@', explicitArray: false, mergeAttrs: true});
 var MongoClient = require('mongodb').MongoClient;
 var format = require('util').format;
 var jsonfile = require('jsonfile');
@@ -41,9 +41,14 @@ parser.parseString(xml, function(err, result){
     if (result.kanjidic2.character != null) {
 			result.kanjidic2.character.forEach(function(element, index, array){
 				var collection = db.collection('kanji');
-				console.log(format("On %s of %s", index, array.length));
+				console.log(format("On %s of %s", index+1, array.length));
 				collection.insert(element, function(err, docs){
 					if (err) throw err;
+
+					if (index == array.length - 1) {
+						console.log("DONE");
+						return;
+					}
 				});
 			});
 		}
